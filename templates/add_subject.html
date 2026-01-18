@@ -1,21 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow p-4">
-            <h3 class="text-center mb-4">კონსპექტის ატვირთვა</h3>
-            <form method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">საგნის დასახელება</label>
-                    <input type="text" name="title" class="form-control" placeholder="მაგ: ფიზიკა, მე-5 ლექცია" required>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-dark text-white border-info shadow">
+                <div class="card-body p-4">
+                    <h2 class="text-center text-info mb-4">კონსპექტის დამატება</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">მასალის დასახელება</label>
+                            <input type="text" name="title" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">აირჩიეთ ფაილი (სურათი)</label>
+                            <input type="file" name="file" class="form-control" accept="image/*" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-info">ატვირთვა</button>
+                            <a href="{{ url_for('profile') }}" class="btn btn-outline-secondary">გაუქმება</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">აირჩიეთ სურათი</label>
-                    <input type="file" name="image" class="form-control" accept="image/*" required>
-                    <div class="form-text">შეგიძლიათ ატვირთოთ JPG, PNG ან JPEG ფაილი.</div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">ატვირთვა</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
