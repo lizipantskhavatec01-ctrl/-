@@ -29,16 +29,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for subject in subjects %}
-                        <tr>
-                            <td>{{ subject.title }}</td>
-                            <td>{{ subject.user_id }}</td>
-                            <td>
-                                <a href="{{ url_for('delete_subject', subject_id=subject.id) }}" class="btn btn-danger">წაშლა</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
+    {% for subject in subjects %}
+    <tr>
+        <td>{{ subject.title }}</td>
+        <td>{{ subject.author.username }}</td>
+        <td>
+    <form action="{{ url_for('delete_subject', subject_id=subject.id) }}" method="POST">
+        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('დარწმუნებული ხართ?')">
+            წაშლა
+        </button>
+    </form>
+      </td>
+
+    </tr>
+    {% endfor %}
+</tbody>
                 </table>
             </div>
         </div>

@@ -63,22 +63,33 @@ def add_subject():
             return redirect(url_for('home'))
     return render_template('add_subject.html')
 
-@app.route('/delete_subject/<int:id>')
+
+@app.route('/delete_subject/<int:subject_id>', methods=['POST'])
 @login_required
-def delete_subject(id):
-    if current_user.username == 'admin':
-        subject = Subject.query.get_or_404(id)
+def delete_subject(subject_id):
+    subject = Subject.query.get_or_404(subject_id)
+
+    if current_user.username == 'admin' or subject.author == current_user:
         db.session.delete(subject)
         db.session.commit()
-    return redirect(url_for('home'))
+        flash('კონსპექტი წაიშალა!', 'success')
+    else:
+        flash('თქვენ არ გაქვთ ამის უფლება!', 'danger')
+
+    return redirect(request.referrer or url_for('home'))
+
 
 @app.route('/admin')
 @login_required
 def admin():
+    # მხოლოდ ადმინს შეეძლოს შემოსვლა
     if current_user.username != 'admin':
         return redirect(url_for('home'))
+
+    # აუცილებელია Subject.query.all(), რომ ბაზიდან ყველა წამოვიდეს
+    subjects = Subject.query.all()
     users = User.query.all()
-    return render_template('admin.html', users=users)
+    return render_template('admin.html', subjects=subjects, users=users)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
