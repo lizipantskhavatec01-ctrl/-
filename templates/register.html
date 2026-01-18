@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 bg-dark p-4 border border-info rounded shadow text-white">
+        <h2 class="text-info text-center mb-4">რეგისტრაცია</h2>
+
+        <form method="POST" action="{{ url_for('register') }}">
+            <div class="mb-3">
+                <label class="form-label">მომხმარებლის სახელი</label>
+                <input type="text" name="username" class="form-control bg-secondary text-white border-info" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ელ-ფოსტა</label>
+                <input type="email" name="email" class="form-control bg-secondary text-white border-info" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">პაროლი</label>
+                <input type="password" name="password" class="form-control bg-secondary text-white border-info" required>
+            </div>
+            <button type="submit" class="btn btn-info w-100 mt-3 fw-bold">დარეგისტრირება</button>
+        </form>
+
+        <div class="mt-3 text-center">
+            <p class="small">უკვე გაქვთ ანგარიში? <a href="{{ url_for('login') }}" class="text-info">შედით</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

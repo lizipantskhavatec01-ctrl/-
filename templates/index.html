@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDUNEST-Home Page</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class='bg-dark'>
+<div class="container-md">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="https://www.tbcbank.ge" target="_blank">
+                <img src="../static/images/tbc-logo.png" alt="TBC Logo" style="width:85px; height:auto;">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('profile') }}">პროფილი</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">ჩვენს შესახებ</a>
+
+                    </li>
+                </ul>
+
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-info" type="submit">ინფორმაციის მოძიება</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card bg-dark text-white border-info h-100">
+                <img src= "https://i.pinimg.com/736x/ff/1a/b6/ff1ab6d6e4edfa27f369592a08f18889.jpg" class="card-img-top"  alt="Physics" >
+                <div class="card-body text-center">
+                    <h5 class="card-title">ფიზიკა</h5>
+                    <p class="card-text">აღმოაჩინე სამყაროს საიდუმლოებები ინტერაქტიული მასალებით.</p>
+                    <a href="https://drive.google.com/file/d/1I2A2EkgT6ExHVUCTTjD5T13PSG7w92Tt/view" class="btn btn-outline-info">გადადი წიგნზე</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card bg-dark text-white border-info h-100">
+                <img src="https://i.pinimg.com/736x/18/ab/c2/18abc2f5eb8a450ed49c7baac0e95818.jpg" class="card-img-top" alt="Math">
+                <div class="card-body text-center">
+                    <h5 class="card-title">მათემატიკა</h5>
+                    <p class="card-text">ლოგიკური აზროვნება და ამოცანების მარტივი ამოხსნები.</p>
+                    <a href="https://www.mat.ge/_files/ugd/a9eb19_f5f8f2c3340e4af0a51d0557eb1228d8.pdf" class="btn btn-outline-info">გადადი წიგნზე</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="row mt-5">
+    <div class="col-12 text-center text-white p-5 border border-info rounded bg-opacity-10 bg-info">
+        <h3>🚀 გჭირდება დახმარება მეცადინეობისას?</h3>
+        <p>გამოიყენე ჩვენი ჭკვიანი AI ასისტენტი შენი კონსპექტების გასაანალიზებლად.</p>
+        <a href="https://notebooklm.google/" target="_blank" class="btn btn-info btn-lg mt-2">
+             გახსენი NotebookLM
+        </a>
+    </div>
+       <div class="row mt-5">
+            <h2 class="text-white mb-4">ჩემი ატვირთული კონსპექტები</h2>
+            {% for subject in subjects %}
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white border-info h-100 shadow">
+                        <img src="{{ url_for('static', filename='uploads/' + subject.image_file) }}"
+                             class="card-img-top"
+                             style="height: 350px; object-fit: cover;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-info">{{ subject.title }}</h5>
+                            <p class="small text-muted">ავტორი: {{ subject.author.username }}</p>
+                            <a href="{{ url_for('static', filename='uploads/' + subject.image_file) }}"
+                               target="_blank"
+                               class="btn btn-outline-info w-100">
+                               სრულად ნახვა 🔍
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+</div>
+</div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

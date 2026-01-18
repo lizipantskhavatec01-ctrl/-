@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow p-4">
+            <h3 class="text-center mb-4">კონსპექტის ატვირთვა</h3>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">საგნის დასახელება</label>
+                    <input type="text" name="title" class="form-control" placeholder="მაგ: ფიზიკა, მე-5 ლექცია" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">აირჩიეთ სურათი</label>
+                    <input type="file" name="image" class="form-control" accept="image/*" required>
+                    <div class="form-text">შეგიძლიათ ატვირთოთ JPG, PNG ან JPEG ფაილი.</div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">ატვირთვა</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

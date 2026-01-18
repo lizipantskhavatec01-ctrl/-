@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 text-white">
+    <h1 class="text-info border-bottom border-info pb-3 text-center">ადმინ პანელი</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <h3 class="text-secondary">მომხმარებლები</h3>
+            <ul class="list-group">
+                {% for user in users %}
+                <li class="list-group-item bg-dark text-white border-secondary d-flex justify-content-between">
+                    {{ user.username }}
+                    {% if user.is_admin %}<span class="badge bg-info">Admin</span>{% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-8">
+            <h3 class="text-secondary">ატვირთული მასალები</h3>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover border-secondary">
+                    <thead>
+                        <tr>
+                            <th>სათაური</th>
+                            <th>ავტორი ID</th>
+                            <th>მოქმედება</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subject in subjects %}
+                        <tr>
+                            <td>{{ subject.title }}</td>
+                            <td>{{ subject.user_id }}</td>
+                            <td>
+                                <a href="{{ url_for('delete_subject', subject_id=subject.id) }}" class="btn btn-danger">წაშლა</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
